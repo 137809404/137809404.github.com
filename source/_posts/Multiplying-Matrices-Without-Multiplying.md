@@ -36,14 +36,14 @@ categories: 论文笔记
     - 使用现有矩阵A~进行K-means聚类
 2. Encoding Function（g(a)）
     - 寻找近似向量
-    - ![](Multiplying-Matrices-Without-Multiplying\image-20210913151208828.png)
+    - ![](/Multiplying-Matrices-Without-Multiplying/image-20210913151208828.png)
 3. Table Construction（h(b)）
     - 预先计算b与子空间每个向量的点积并存储，记作c表
     - 输入b，在c表中查找近似点积结果
-    - ![](Multiplying-Matrices-Without-Multiplying\image-20210913151226194.png)
+    - ![](/Multiplying-Matrices-Without-Multiplying/image-20210913151226194.png)
 4. Aggregation
     - 聚合g(a)与h(b)的结果，将C表对应位置结果相加
-    - ![](Multiplying-Matrices-Without-Multiplying\image-20210913151338536.png)
+    - ![](/Multiplying-Matrices-Without-Multiplying/image-20210913151338536.png)
 
 
 
@@ -57,9 +57,9 @@ categories: 论文笔记
 
 - h(b)
 
-  ![image-20210913152049269](Multiplying-Matrices-Without-Multiplying\image-20210913152049269.png)
+  ![image-20210913152049269](/Multiplying-Matrices-Without-Multiplying/image-20210913152049269.png)
 
 - f(·,·)
 
-    - ![image-20210913152148362](Multiplying-Matrices-Without-Multiplying\image-20210913152148362.png)
+    - ![image-20210913152148362](/Multiplying-Matrices-Without-Multiplying/image-20210913152148362.png)
 
