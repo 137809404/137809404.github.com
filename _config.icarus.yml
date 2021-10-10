@@ -111,10 +111,10 @@ navbar:
         Tags: /tags
         About: /about
     # Links to be shown on the right of the navigation bar
-    links:
-        Download on GitHub:
-            icon: fab fa-github
-            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+#    links:
+#        Download on GitHub:
+#            icon: fab fa-github
+#            url: 'https://github.com/ppoffice/hexo-theme-icarus'
 # Page footer configurations
 #footer:
 #    # Links to be shown on the right of the footer section
@@ -158,10 +158,10 @@ search:
     type: insight
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
-comment:
-    type: disqus
-    # Disqus shortname
-    shortname: ''
+#comment:
+#    type: disqus
+#    # Disqus shortname
+#    shortname: ''
 # Donate plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
 #donates:
@@ -199,10 +199,10 @@ comment:
 #        qrcode: ''
 # Share plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/
-share:
-    type: sharethis
-    # URL to the ShareThis share plugin script
-    install_url: ''
+#share:
+#    type: sharethis
+#    # URL to the ShareThis share plugin script
+#    install_url: ''
 # Sidebar configurations.
 # Please be noted that a sidebar is only visible when it has at least one widget
 sidebar:
@@ -213,14 +213,14 @@ sidebar:
     # Right sidebar configurations
     right:
         # Whether the sidebar sticks to the top when page scrolls
-        sticky: false
+        sticky: true
 # Sidebar widget configurations
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
     # Profile widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: profile
         # Author name
         author: Hang's Blog
@@ -229,11 +229,11 @@ widgets:
         # Author's current location
         location: NEU
         # URL or path to the avatar image
-        avatar:
+        avatar: https://raw.githubusercontent.com/137809404/137809404.github.com/master/img/avatar.png
         # Whether show the rounded avatar image
         avatar_rounded: true
         # Email address for the Gravatar
-        gravatar: peiyuhangneu@qq.com
+        gravatar:
         # URL or path for the follow button
 #        follow_link: 'https://github.com/ppoffice'
         # Links to be shown on the bottom of the profile widget
@@ -256,10 +256,10 @@ widgets:
     # Table of contents widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: toc
         # Whether to show the index of each heading
-        index: true
+        index: false
         # Whether to collapse sub-headings when they are out-of-view
         collapsed: true
         # Maximum level of headings to show (1-6)
@@ -281,7 +281,7 @@ widgets:
     # Recent posts widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: right
+        position: left
         type: recent_posts
     # Archives widget configurations
     -
