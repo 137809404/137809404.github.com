@@ -229,7 +229,7 @@ widgets:
         # Author's current location
         location: NEU
         # URL or path to the avatar image
-        avatar: https://raw.githubusercontent.com/137809404/137809404.github.com/master/img/avatar.png
+        avatar: /img/avatar.png
         # Whether show the rounded avatar image
         avatar_rounded: true
         # Email address for the Gravatar
