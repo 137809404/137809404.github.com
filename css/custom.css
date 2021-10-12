@@ -1,0 +1,11 @@
+.is-3-column {
+  background-image: url("https://pic4.zhimg.com/v2-4fad2bf24730501882a333df6a8ca535_r.jpg?source=1940ef5c");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.widget,
+.footer {
+  background-color: rgba(255,255,255,0.7);
+}
