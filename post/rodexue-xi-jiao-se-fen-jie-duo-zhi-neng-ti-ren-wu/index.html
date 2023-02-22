@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://hangblog.tk/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content="读博记录"><meta charset="UTF-8"><title>RODE：学习角色分解多智能体任务 | Hang&#39;s blog</title>
+<link href="https://hangblog.tk/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://hangblog.tk/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://hangblog.tk/post/rodexue-xi-jiao-se-fen-jie-duo-zhi-neng-ti-ren-wu/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://hangblog.tk"><img alt="logo" style="display:inline-block;" src="https://hangblog.tk/images/avatar.png"/></a><h1 title="Hang&#39;s blog" class="weaklink"><a  href="/">Hang&#39;s blog</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1677055266396" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>RODE：学习角色分解多智能体任务</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2023-02-19</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://hangblog.tk/tag/aN9iVP5R_/" class="tag">论文笔记</a> | 	<a href="https://hangblog.tk/tag/EY3xRWp7o/" class="tag">多智能体</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">817字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">3 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="简介">简介</h2>
+<p>RODE 是一种使用基于角色的学习将复杂的多智能体任务分解为简单子任务的新方法。在 RODE 中，智能体学习在团队中扮演特定的角色，例如防守者或攻击者，并相互合作以实现整个任务。这种方法使得多智能体学习更具可扩展性，因为它允许智能体专注于更小、更易管理的子任务。</p>
+<h2 id="方法">方法</h2>
+<p>RODE 使用了两阶段学习过程。在第一阶段，智能体使用深度强化学习算法学习执行特定角色。智能体在去中心化的方式下进行训练，因此每个智能体独立学习执行其角色。在第二阶段，智能体学习如何协调和合作以实现整个任务。这是通过使用集中式训练算法完成的，这使得智能体可以学习如何作为一个团队共同工作。<br>
+<img src="https://hangblog.tk/post-images/1677045474971.png" alt="" loading="lazy"><br>
+RODE 中使用的基于角色的学习方法具有多种优点。它使智能体能够专注于特定任务，从而可以提高性能并减少训练所需的时间。它还允许智能体适应不断变化的环境和任务，因为它们可以快速切换角色以满足需求。</p>
+<h2 id="动作表示学习">动作表示学习</h2>
+<p>我们首先提出了基于效果的动作表示学习方法，将动作根据其对环境和其他智能体的影响聚类成角色动作空间。<br>
+<img src="https://hangblog.tk/post-images/1677045524842.png" alt="" loading="lazy"></p>
+<h2 id="角色选择器">角色选择器</h2>
+<p>在了解可用动作的效果后，我们训练一个角色选择器，确定相应的角色观察空间。这种设计形成了一个双层学习框架。在顶层，角色选择器在更小的角色空间和较低的时间分辨率下协调角色分配。<br>
+<img src="https://hangblog.tk/post-images/1677045582384.png" alt="" loading="lazy"></p>
+<h2 id="角色策略">角色策略</h2>
+<p>在低层次上，角色策略在减少的原始动作观察空间中探索策略。为了进一步提高子问题的学习效率，我们将角色策略条件化到学习的基于效果的动作表示上。<br>
+<img src="https://hangblog.tk/post-images/1677045611396.png" alt="" loading="lazy"></p>
+<h2 id="结果">结果</h2>
+<p>我们在StarCraft II微观管理环境上测试了RODE，并建立了新的技术水平。这个基准测试结果表明，RODE在14张地图中的10张中表现最好，包括所有9个难度较大的地图和超级难度地图。学习的动作表示、因子动作空间和角色选择的动态的可视化进一步说明了RODE卓越的性能。在动作表示上条件化角色选择器和角色策略，使学习的RODE策略能够转移到具有不同动作数量和智能体数量的任务，包括智能体数量是原来的三倍的任务。</p>
+<h3 id="动作表征效果">动作表征效果</h3>
+<figure data-type="image" tabindex="1"><img src="https://hangblog.tk/post-images/1677045653608.png" alt="" loading="lazy"></figure>
+<h3 id="胜率表现">胜率表现</h3>
+<figure data-type="image" tabindex="2"><img src="https://hangblog.tk/post-images/1677045681523.png" alt="" loading="lazy"></figure>
+<h3 id="消融实验">消融实验</h3>
+<figure data-type="image" tabindex="3"><img src="https://hangblog.tk/post-images/1677045735607.png" alt="" loading="lazy"></figure>
+<h3 id="迁移能力">迁移能力</h3>
+<figure data-type="image" tabindex="4"><img src="https://hangblog.tk/post-images/1677045705172.png" alt="" loading="lazy"></figure>
+<h2 id="结论">结论</h2>
+<p>RODE 是一种有前途的多智能体学习方法，可以使用基于角色的学习将复杂任务分解为简单子任务。这种方法具有多种优点，包括提高性能和可扩展性。评估结果证明了 RODE 在 SMAC 星际争霸环境中的有效性。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a></li>
+<li><a href="#%E5%8A%A8%E4%BD%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0">动作表示学习</a></li>
+<li><a href="#%E8%A7%92%E8%89%B2%E9%80%89%E6%8B%A9%E5%99%A8">角色选择器</a></li>
+<li><a href="#%E8%A7%92%E8%89%B2%E7%AD%96%E7%95%A5">角色策略</a></li>
+<li><a href="#%E7%BB%93%E6%9E%9C">结果</a>
+<ul>
+<li><a href="#%E5%8A%A8%E4%BD%9C%E8%A1%A8%E5%BE%81%E6%95%88%E6%9E%9C">动作表征效果</a></li>
+<li><a href="#%E8%83%9C%E7%8E%87%E8%A1%A8%E7%8E%B0">胜率表现</a></li>
+<li><a href="#%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C">消融实验</a></li>
+<li><a href="#%E8%BF%81%E7%A7%BB%E8%83%BD%E5%8A%9B">迁移能力</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%93%E8%AE%BA">结论</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"></div></div><div class="copyright"id="copyright">Hang's BlogCopyright © 2018-2020 <a href="https://hangblog.tk" style="margin:0;">Hang&#39;s blog</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>2</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://hangblog.tk/media/js/prism.js"></script>
+</body>
+</html>

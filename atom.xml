@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://hangblog.tk</id>
+    <title>Hang&apos;s blog</title>
+    <updated>2023-02-22T08:41:10.012Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://hangblog.tk"/>
+    <link rel="self" href="https://hangblog.tk/atom.xml"/>
+    <subtitle>读博记录</subtitle>
+    <logo>https://hangblog.tk/images/avatar.png</logo>
+    <icon>https://hangblog.tk/favicon.ico</icon>
+    <rights>All rights reserved 2023, Hang&apos;s blog</rights>
+    <entry>
+        <title type="html"><![CDATA[RODE：学习角色分解多智能体任务]]></title>
+        <id>https://hangblog.tk/post/rodexue-xi-jiao-se-fen-jie-duo-zhi-neng-ti-ren-wu/</id>
+        <link href="https://hangblog.tk/post/rodexue-xi-jiao-se-fen-jie-duo-zhi-neng-ti-ren-wu/">
+        </link>
+        <updated>2023-02-19T12:38:36.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="简介">简介</h2>
+<p>RODE 是一种使用基于角色的学习将复杂的多智能体任务分解为简单子任务的新方法。在 RODE 中，智能体学习在团队中扮演特定的角色，例如防守者或攻击者，并相互合作以实现整个任务。这种方法使得多智能体学习更具可扩展性，因为它允许智能体专注于更小、更易管理的子任务。</p>
+<h2 id="方法">方法</h2>
+<p>RODE 使用了两阶段学习过程。在第一阶段，智能体使用深度强化学习算法学习执行特定角色。智能体在去中心化的方式下进行训练，因此每个智能体独立学习执行其角色。在第二阶段，智能体学习如何协调和合作以实现整个任务。这是通过使用集中式训练算法完成的，这使得智能体可以学习如何作为一个团队共同工作。<br>
+<img src="https://hangblog.tk/post-images/1677045474971.png" alt="" loading="lazy"><br>
+RODE 中使用的基于角色的学习方法具有多种优点。它使智能体能够专注于特定任务，从而可以提高性能并减少训练所需的时间。它还允许智能体适应不断变化的环境和任务，因为它们可以快速切换角色以满足需求。</p>
+<h2 id="动作表示学习">动作表示学习</h2>
+<p>我们首先提出了基于效果的动作表示学习方法，将动作根据其对环境和其他智能体的影响聚类成角色动作空间。<br>
+<img src="https://hangblog.tk/post-images/1677045524842.png" alt="" loading="lazy"></p>
+<h2 id="角色选择器">角色选择器</h2>
+<p>在了解可用动作的效果后，我们训练一个角色选择器，确定相应的角色观察空间。这种设计形成了一个双层学习框架。在顶层，角色选择器在更小的角色空间和较低的时间分辨率下协调角色分配。<br>
+<img src="https://hangblog.tk/post-images/1677045582384.png" alt="" loading="lazy"></p>
+<h2 id="角色策略">角色策略</h2>
+<p>在低层次上，角色策略在减少的原始动作观察空间中探索策略。为了进一步提高子问题的学习效率，我们将角色策略条件化到学习的基于效果的动作表示上。<br>
+<img src="https://hangblog.tk/post-images/1677045611396.png" alt="" loading="lazy"></p>
+<h2 id="结果">结果</h2>
+<p>我们在StarCraft II微观管理环境上测试了RODE，并建立了新的技术水平。这个基准测试结果表明，RODE在14张地图中的10张中表现最好，包括所有9个难度较大的地图和超级难度地图。学习的动作表示、因子动作空间和角色选择的动态的可视化进一步说明了RODE卓越的性能。在动作表示上条件化角色选择器和角色策略，使学习的RODE策略能够转移到具有不同动作数量和智能体数量的任务，包括智能体数量是原来的三倍的任务。</p>
+<h3 id="动作表征效果">动作表征效果</h3>
+<figure data-type="image" tabindex="1"><img src="https://hangblog.tk/post-images/1677045653608.png" alt="" loading="lazy"></figure>
+<h3 id="胜率表现">胜率表现</h3>
+<figure data-type="image" tabindex="2"><img src="https://hangblog.tk/post-images/1677045681523.png" alt="" loading="lazy"></figure>
+<h3 id="消融实验">消融实验</h3>
+<figure data-type="image" tabindex="3"><img src="https://hangblog.tk/post-images/1677045735607.png" alt="" loading="lazy"></figure>
+<h3 id="迁移能力">迁移能力</h3>
+<figure data-type="image" tabindex="4"><img src="https://hangblog.tk/post-images/1677045705172.png" alt="" loading="lazy"></figure>
+<h2 id="结论">结论</h2>
+<p>RODE 是一种有前途的多智能体学习方法，可以使用基于角色的学习将复杂任务分解为简单子任务。这种方法具有多种优点，包括提高性能和可扩展性。评估结果证明了 RODE 在 SMAC 星际争霸环境中的有效性。</p>
+]]></content>
+    </entry>
+</feed>
